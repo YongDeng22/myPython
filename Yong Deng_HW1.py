@@ -13,12 +13,12 @@ name = input("\nHi, what is your Name? ")
 print("\nHello "+name+"! let's play a game!")
 print("\nThink of random number from 1 to 100, and I'll try to guess it!")
 play = "yes"		#whether the user want to play
-count = 0			#count of guesses. When the user did not enter yes/no, it's not counted
+count = 0		#count of guesses. When the user did not enter yes/no, it's not counted
 smallerNumber = 1	#the smallest number in the range
 largerNumber = 100	#the largest number in the range
 
 while (play == "yes" and smallerNumber <= largerNumber):
-	guess = (smallerNumber + largerNumber) // 2				#the number guessed
+	guess = (smallerNumber + largerNumber) // 2		#the number guessed
 	answer = input("\nIs it " + str(guess) + "? (yes/no)")	#match? yes, otherwise no
 	count = count + 1
 
@@ -34,7 +34,7 @@ while (play == "yes" and smallerNumber <= largerNumber):
 		#when guess is wrong, ask whether the number is larger than guessed number or not
 		isLarger = input ("\nIs the number larger than " + str(guess) + " ? (yes/no)")
 		while (isLarger != "yes" and isLarger != "no"):
-			#if the user entered wrong info, prompt to enter again
+		#if the user entered wrong info, prompt to enter again
 			isLarger = input ("\nIs the number larger than " + str(guess) + " ? (yes/no)")
 		if isLarger == "yes":
 			smallerNumber = guess + 1
