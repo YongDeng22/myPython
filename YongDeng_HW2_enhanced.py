@@ -124,19 +124,23 @@ found = 0	#track whether any match found. If yes > 0, otherwise equals to 0
 for i,quote in enumerate(data_list):
 	#for loop to perform searching
 	andFound = "yes"	#the status of "AND" search, if found yes otherwise no
-	words = quote.split()
+	lowerCaseQuote = quote.lower()	#convert the sentence to lowercase
+	# words = quote.split()
+
 	for q in query:
 		if (operation == "OR"):
 			#perform "OR" search
 			andFound = "no"
-			if(q in words):
+			if lowerCaseQuote.find(q) != -1:
+			# if(q in words):
 				#print "OR" search result
 				print("Found at", i, quote[:80])
 				found = found + 1	#when find a match, increment found
 				break
 		else:
 			#perform "AND" search
-			if (q not in words):
+			# if (q not in words):
+			if lowerCaseQuote.find(q) == -1:
 				andFound = "no"
 				break
 	if (andFound == "yes"):
@@ -157,7 +161,51 @@ else:
 #-----------------------------------------------------------------------------------------------------------------
 # Sample outputs
 #-----------------------------------------------------------------------------------------------------------------
-# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2.py 
+# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2_enhanced.py
+# query:sheep and flower
+
+# Performing AND search for: {'flower', 'sheep'} 
+
+# Found at 31 For millions of years flowers have been producing thorns. For millions of years 
+
+# 1 matches found.
+
+# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2_enhanced.py
+# query:sheep or flower
+
+# Performing OR search for: {'flower', 'sheep'} 
+
+# Found at 10 If you love a flower that lives on a star, it is sweet to look at the sky at nig
+# Found at 16 She cast her fragrance and her radiance over me. I ought never to have run away 
+# Found at 22 In those days, I didn't understand anything. I should have judged her according 
+# Found at 25 The proof that the little prince existed is that he was charming, that he laughe
+# Found at 31 For millions of years flowers have been producing thorns. For millions of years 
+# Found at 38 I ought not to have listened to her,' he confided to me one day. 'One never ough
+# Found at 44 Of course, I love you,' the flower said to him. 'If you were not aware of it, it
+# Found at 47 You know...my flower...I'm responsible for her. And she's so weak! And so naive.
+# Found at 58 "What a queer planet!" he thought. "It is altogether dry, and altogether pointed
+# Found at 59 I know a planet where there is a certain red-faced gentleman. He has never smell
+# Found at 71 But I, alas, do not know how to see sheep through the walls of boxes. Perhaps I 
+# Found at 77 If someone loves a flower of which just one exists among all the millions and mi
+# Found at 79 Will you draw me a sheep?
+# Found at 81 If you love a flower that lives on a star, then it's good at night, to look up a
+
+# 14 matches found.
+
+# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2_enhanced.py
+# query:sheep sheep and flower or flower
+
+# Performing AND search for: {'flower', 'sheep'} 
+
+# Found at 31 For millions of years flowers have been producing thorns. For millions of years 
+
+# 1 matches found.
+
+# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2_enhanced.py
+# query:
+# ERROR! Query cannot be empty.
+# query:and or
+# ERROR! Query cannot be empty.
 # query:sheep and flower
 
 # Performing AND search for: {'sheep', 'flower'} 
@@ -165,36 +213,5 @@ else:
 # Found at 31 For millions of years flowers have been producing thorns. For millions of years 
 
 # 1 matches found.
-
-# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2.py 
-# query:sheep or flower
-
-# Performing OR search for: {'sheep', 'flower'} 
-
-# Found at 10 If you love a flower that lives on a star, it is sweet to look at the sky at nig
-# Found at 31 For millions of years flowers have been producing thorns. For millions of years 
-# Found at 44 Of course, I love you,' the flower said to him. 'If you were not aware of it, it
-# Found at 71 But I, alas, do not know how to see sheep through the walls of boxes. Perhaps I 
-# Found at 77 If someone loves a flower of which just one exists among all the millions and mi
-# Found at 81 If you love a flower that lives on a star, then it's good at night, to look up a
-
-# 6 matches found.
-
-# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2.py 
-# query:sheep sheep and flower or flower
-
-# Performing AND search for: {'sheep', 'flower'} 
-
-# Found at 31 For millions of years flowers have been producing thorns. For millions of years 
-
-# 1 matches found.
-
-# Yongs-MBP-5:~ yongdeng$ python3 /Users/yongdeng/Documents/CS/UNH\ assignments/CSCI\ 6651\ python/myPython/YongDeng_HW2.py 
-# query:
-# Query cannot be empty. Please enter a query: abcd
-
-# Performing AND search for: abcd 
-
-# No matches found.
 
 # Yongs-MBP-5:~ yongdeng$ 
