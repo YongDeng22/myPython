@@ -82,7 +82,7 @@ data_list=["And now here is my secret, a very simple secret: It is only with the
 "If you love a flower that lives on a star, then it's good at night, to look up at the sky. All the stars are blossoming."]
 
 #*****************************************************************************************
-	#CSCI 6655
+	#CSCI 6651
 	#Homework 2
 	#Author: Yong Deng
 	#Since:  4-23-2015
