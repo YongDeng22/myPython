@@ -1,5 +1,6 @@
 from tkinter import *
 from flask import Flask
+from tkinter import messagebox
 import sqlite3
 import tkinter
 from random import randint
@@ -9,8 +10,10 @@ def play():
 	global result, score
 	global conn
 	global cursor
-
-	answer = int(e1.get())
+	try:
+		answer = int(e1.get())
+	except ValueError:
+		messagebox.showinfo("Empty input", "You did not enter any answer!")
 	e1.delete(0, END)
 
 	total_games += 1
@@ -70,7 +73,7 @@ def play_again():
 	elif op == '/':
 		result = a // b
 
-	l1["text"] = str(a) + op + str(b) + "="
+	l1["text"] = str(a) + " " + op + " " + str(b) + " = "
 	l1.pack( side = LEFT)
 	e1.pack(side = LEFT)
 	l2.pack()
@@ -112,7 +115,7 @@ def play_view():
 	elif op == '/':
 		result = a // b
 
-	l1["text"] = str(a) + " " + op + " " + str(b) + "="
+	l1["text"] = str(a) + " " + op + " " + str(b) + " ="
 	l1.pack( side = LEFT)
 	e1.pack(side = LEFT)
 	l2.pack()
