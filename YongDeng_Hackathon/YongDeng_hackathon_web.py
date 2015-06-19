@@ -12,7 +12,7 @@ def show_progress(username):
 		progress = cursor.execute("select * from kid_game where username = ?", username).fetchall()
 		percent = int(progress[0][2] / progress[0][1] * 100)
 		conn.commit()
-		conn.close()
+		
 		message += "<html><head><style><html{display:table;margin:auto;}body{padding-top:50px;margin:20px auto 0 auto;width:60%;font-family:sans-serif;display:table;vertical-align:middle;}"
 		message += "table{font-size:24px; width:600px; margin-top:0;} h1{margin:0px;}table{margin:0 auto;}</style></head>"
 		message += "<body><h1>Below is the summary of the your kid's progress:</h1>"
@@ -26,6 +26,8 @@ def show_progress(username):
 		return message
 	except Exception as e:
 		return 'hello world!'
+	finally:
+		conn.close()
 
 if __name__ == '__main__':
   app.run( 
