@@ -1,6 +1,5 @@
 from tkinter import *
 from flask import Flask
-from tkinter import messagebox
 import sqlite3
 import tkinter
 from random import randint
@@ -10,10 +9,8 @@ def play():
 	global result, score
 	global conn
 	global cursor
-	try:
-		answer = int(e1.get())
-	except ValueError:
-		messagebox.showinfo("Empty input", "You did not enter any answer!")
+
+	answer = int(e1.get())
 	e1.delete(0, END)
 
 	total_games += 1
@@ -49,7 +46,7 @@ def play_again():
 	global total_games, score
 	# user_name = e1.get()
 	e1.delete(0, END)
-	user = cursor.execute("select * from kid_game where username =?", user_name).fetchall()
+	user = cursor.execute("select * from kid_game where username =?", (user_name,)).fetchall()
 
 	if (not check_user(user_name, user)):
 		cursor.execute("insert into kid_game values(?,?,?)", (user_name,total_games,score))
@@ -73,7 +70,7 @@ def play_again():
 	elif op == '/':
 		result = a // b
 
-	l1["text"] = str(a) + " " + op + " " + str(b) + " = "
+	l1["text"] = str(a) + op + str(b) + "="
 	l1.pack( side = LEFT)
 	e1.pack(side = LEFT)
 	l2.pack()
@@ -93,7 +90,7 @@ def play_view():
 	user_name = e1.get()
 	e1.delete(0, END)
 	# messagebox.showinfo("Welcome", e1.get())
-	user = cursor.execute("select * from kid_game where username =?", user_name).fetchall()
+	user = cursor.execute("select * from kid_game where username =?", (user_name,)).fetchall()
 	if (not check_user(user_name, user)):
 		cursor.execute("insert into kid_game values(?,?,?)", (user_name,total_games,score))
 	else:
@@ -115,7 +112,7 @@ def play_view():
 	elif op == '/':
 		result = a // b
 
-	l1["text"] = str(a) + " " + op + " " + str(b) + " ="
+	l1["text"] = str(a) + " " + op + " " + str(b) + "="
 	l1.pack( side = LEFT)
 	e1.pack(side = LEFT)
 	l2.pack()
