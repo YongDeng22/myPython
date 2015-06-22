@@ -9,7 +9,7 @@ def show_progress(username):
 	conn = sqlite3.connect('game.sqlite')
 	cursor = conn.cursor()
 	try:
-		progress = cursor.execute("select * from kid_game where username = ?", username).fetchall()
+		progress = cursor.execute("select * from kid_game where username = ?", (username,)).fetchall()
 		percent = int(progress[0][2] / progress[0][1] * 100)
 		conn.commit()
 		
@@ -25,6 +25,7 @@ def show_progress(username):
 		message += "</body></html>"
 		return message
 	except Exception as e:
+		print(e)
 		return 'hello world!'
 	finally:
 		conn.close()
